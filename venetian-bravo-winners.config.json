@@ -1,0 +1,60 @@
+{
+  "customer": "The Venetian Resort Las Vegas",
+  "widgetType": "Custom (Recognition Board)",
+  "title": "Bravo! Winners",
+  "branding": {
+    "logos": [
+      { "name": "Company logo (griffin + wordmark)", "file": "Company_Logo_-_600x60066.png", "sourceMime": "image/jpeg", "embeddedMime": "image/png", "treatment": "Maroon background removed; single-color alpha mask recolored via CSS (maroon #5E000A in light mode, cream #FBEEDA in dark mode)", "bytes": 6806 },
+      { "name": "V shield (avatar)", "file": "Avatar_-_600x60021.png", "sourceMime": "image/jpeg", "embeddedMime": "image/png", "treatment": "Background removed; alpha mask; replaces full logo in frames under 230px tall", "bytes": 1330 },
+      { "name": "Bravo! Winner badge", "file": "Recognition_Badges_Bravo23.png", "sourceMime": "image/jpeg", "embeddedMime": "image/jpeg", "treatment": "Cropped to circle, 240px, CSS circular mask (no white corners)", "bytes": 8878 }
+    ],
+    "primaryColor": "#5E000A",
+    "secondaryColor": "#FBEEDA",
+    "accentColor": "#E83F55",
+    "accentColors": { "ok": null, "warn": null, "bad": null, "note": "Skipped per customer; recognition has no warning states" },
+    "pattern": "Brand Banner wing motif recreated as inline SVG pattern (banner image not embedded)"
+  },
+  "content": {
+    "primaryMetric": { "label": "Bravo! honors since 1999", "value": "All-time count of winners and honorees in the roster (1,921)" },
+    "secondaryMetrics": [
+      { "label": "{quarter} honorees", "value": "Winners in the featured quarter (12 for Q4 2025)" },
+      { "label": "Departments this quarter", "value": "Distinct departments in the featured quarter (11 for Q4 2025)" },
+      { "label": "Years of Bravo!", "value": "Latest year minus first year plus one (27: 1999 to 2025)" }
+    ],
+    "statusStates": {
+      "standard": { "trigger": "employeeCode absent or not in featured quarter", "label": "Q4 2025 Honorees", "greeting": "Welcome, {firstName lastName} (fallback: Team Member)" },
+      "personalWinner": { "trigger": "hash(employeeCode) matches a winner in the featured quarter", "label": "You're a Bravo! winner", "greeting": "Congratulations, {name}", "behavior": "Viewer's own card shown first with coral outline, one-time sheen and 2s status dot; their name starred in history" }
+    },
+    "featuredCarousel": "Featured quarter winners rotate every rotateSeconds, roster order",
+    "history": "All other quarters, newest first, rendered in batches on scroll",
+    "timeWindows": null,
+    "tone": "Celebratory, polished",
+    "language": "en",
+    "privacy": "Employee numbers never displayed; stored only as FNV-1a 32-bit hashes for matching"
+  },
+  "data": {
+    "primaryParam": "employeeCode",
+    "identityNote": "Not location-scoped; same roster for every location. externalLocationId is read but unused.",
+    "exampleValue": "61854",
+    "workjamVariablesUsed": ["employeeCode", "language", "aspectRatio"],
+    "workjamVariablesRead": ["externalLocationId", "externalLocationCode", "address", "city", "stateOrProvince", "country", "zipCode", "externalRegionId", "externalRegionCode", "employeeId", "employeeCode", "username", "language", "aspectRatio"],
+    "customVariables": [
+      { "name": "firstName", "type": "string", "fallback": "matched roster name, else 'Team Member'", "displayRule": "Title-cased in header greeting" },
+      { "name": "lastName", "type": "string", "fallback": "omitted", "displayRule": "Appended to firstName in greeting" },
+      { "name": "quarter", "type": "string", "fallback": "Most recent quarter in data (Q4 2025)", "displayRule": "Pins featured quarter; accepts Q4-2025, Q4 2025 or 2025-Q4; invalid values fall back" },
+      { "name": "rotateSeconds", "type": "number", "fallback": 6, "displayRule": "Carousel interval, clamped 3 to 30" }
+    ],
+    "dataSource": "Static, embedded from Quarterly_Bravo_Recognition_Program.pdf (1999 to Q4 2025, 1,921 honors after cleanup)",
+    "refreshMs": 1000,
+    "refreshNote": "1000 ms tick drives the carousel progress; data itself is static"
+  },
+  "display": {
+    "defaultAspectRatio": "standard",
+    "supportedAspectRatios": ["standard", "square", "landscape", "portrait"],
+    "renderingContext": "Phone tile",
+    "exampleUrl": "https://<your-host>/venetian-bravo-winners.html?employeeCode={{employeeCode}}&firstName={{firstName}}&lastName={{lastName}}&language={{language}}&aspectRatio=standard"
+  },
+  "fileSizeBytes": 93562,
+  "version": "1.0.0",
+  "builtOn": "2026-10-06"
+}
